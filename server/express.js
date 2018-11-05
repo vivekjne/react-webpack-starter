@@ -39,9 +39,12 @@ app.use(cors())
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 // mount routes
+
 app.use('/', userRoutes)
 app.use('/', authRoutes)
-
+app.get('*', (req, res) => {
+    res.status(200).send(Template())
+  })
 // app.get('*', (req, res) => {
 //    const sheetsRegistry = new SheetsRegistry()
 //    const theme = createMuiTheme({
